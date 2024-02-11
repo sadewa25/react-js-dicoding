@@ -5,10 +5,9 @@ import api from '../../utils/api';
 import { receiveTalksActionCreator } from '../talks/action';
 import { receiveUsersActionCreator } from '../users/action';
 
-function asyncPopulateUsersAndTalks() {
+function asyncPopulateThreads() {
   return async (dispatch) => {
     try {
-      const users = await api.getAllUsers();
       const talks = await api.getAllTalks();
 
       dispatch(receiveUsersActionCreator(users));
@@ -19,4 +18,4 @@ function asyncPopulateUsersAndTalks() {
   };
 }
 
-export { asyncPopulateUsersAndTalks };
+export { asyncPopulateThreads };

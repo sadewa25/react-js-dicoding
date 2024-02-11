@@ -1,40 +1,31 @@
 import React, { useEffect } from 'react';
-import TalkInput from '../components/TalkInput';
-import TalksList from '../components/TalksList';
+import { useSelector, useDispatch } from 'react-redux';
+import { asyncGetThreads } from '../states/threads/action';
+import ThreadsList from '../components/ThreadsList';
+import { BtnAdd } from '../atoms';
 
 function HomePage() {
   const {
-    talks = [],
-    users = [],
+    threads = [],
     authUser,
-  } = {}; // @TODO: get talks, users, and authUser state from store
+  } = useSelector((states) => states);
 
-  const dispatch = null; // @TODO: get dispatch function from store
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    // @TODO: dispatch async action to populate talks and users data
-
+    dispatch(asyncGetThreads())
   }, [dispatch]);
 
-  const onAddTalk = (text) => {
-    // @TODO: dispatch async action to add talk
-
-  };
-
-  const onLike = (id) => {
-    // @TODO: dispatch async action to toggle like talk
-  };
-
-  const talkList = talks.map((talk) => ({
-    ...talk,
-    user: users.find((user) => user.id === talk.user),
-    authUser: authUser.id,
-  }));
+  const addThreads = () => {
+    alert('oit');
+  }
 
   return (
     <section className="home-page">
-      <TalkInput addTalk={onAddTalk} />
-      <TalksList talks={talkList} like={onLike} />
+      <div style={{ marginTop: 24 }}>
+        <BtnAdd messages={'Threads'} addAct={addThreads} />
+      </div>
+      <ThreadsList threads={threads} />
     </section>
   );
 }

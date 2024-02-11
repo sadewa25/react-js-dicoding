@@ -1,0 +1,41 @@
+Kriteria Utama 1: Fungsionalitas Aplikasi
+Terdapat cara untuk mendaftar akun.
+Terdapat cara untuk login akun.
+Menampilkan daftar thread.
+Ketika item thread dipilih, menampilkan detail thread beserta komentar di dalamnya.
+Pengguna dapat membuat thread.
+Pengguna dapat membuat komentar di dalam sebuah thread.
+Menampilkan Loading bar ketika memuat data dari API.
+
+Catatan penting.
+
+Perihal authorization dalam mengakses resource threads kami bebaskan. Anda boleh mengharuskan pengguna untuk login ataupun tidak ketika ingin melihat threads. Namun, dalam berinteraksi mengubah data, seperti membuat thread atau komentar, pengguna wajib terotentikasi.
+
+Item thread pada halaman daftar thread yang ditampilkan harus mengandung informasi berikut ini.
+Judul dari thread.
+Potongan dari body thread (opsional).
+Waktu pembuatan thread.
+Jumlah komentar.
+Informasi pembuat thread:
+Nama
+Avatar (opsional)
+
+
+Halaman detail thread harus mengandung informasi berikut ini.
+Judul dari thread.
+Body dari thread.
+Waktu pembuatan thread.
+Informasi pembuat thread:
+Nama
+Avatar
+
+Komentar pada thread tersebut. Minimal informasi yang harus ditampilkan adalah:
+Konten dari komentar.
+Waktu pembuatan komentar.
+
+Informasi pembuat komentar:
+Nama
+Avatar (opsional)
+
+
+https://forum-api.dicoding.dev/v1/#/

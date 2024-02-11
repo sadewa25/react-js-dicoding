@@ -44,14 +44,14 @@ const api = (() => {
     return user;
   }
 
-  async function login({ id, password }) {
+  async function login({ email, password }) {
     const response = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id,
+        email,
         password,
       }),
     });
@@ -84,6 +84,23 @@ const api = (() => {
 
     return user;
   }
+  
+  async function getAllThreads() {
+    const response = await fetch(`${BASE_URL}/threads`);
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { threads } } = responseJson;
+
+    return threads;
+  }
+  /***Old Code */
 
   async function getAllUsers() {
     const response = await fetch(`${BASE_URL}/users`);
@@ -184,6 +201,8 @@ const api = (() => {
     register,
     login,
     getOwnProfile,
+    getAllThreads,
+
     getAllUsers,
     getAllTalks,
     createTalk,
