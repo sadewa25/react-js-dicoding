@@ -5,20 +5,20 @@ import { postedAt } from '../utils';
 import ReactHtmlParser from 'html-react-parser';
 
 function ThreadItem({
-  id, title, body, createdAt, totalComments
+  id, title, body, createdAt, totalComments, onClick, ownerId
 }) {
 
   const navigate = useNavigate();
 
   return (
-    <div role="button" tabIndex={0} className="talk-item">
+    <div role="button" tabIndex={0} className="talk-item" onClick={onClick}>
       <div className="talk-item__detail">
         <header>
           <div className="talk-item__user-info">
             <p className="talk-item__user-name">{title}</p>
             <p className="talk-item__user-id">
               @
-              {id}
+              {id} / {ownerId}
             </p>
           </div>
 
@@ -43,6 +43,7 @@ const threadItemShape = {
     body: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
     totalComments: PropTypes.number.isRequired,
+    ownerId: PropTypes.string.isRequired,
 };
 
 ThreadItem.propTypes = {

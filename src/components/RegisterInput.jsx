@@ -43,7 +43,7 @@ function RegisterInput({ registerPage }) {
 }
 
 RegisterInput.propTypes = {
-  register: PropTypes.func.isRequired,
+  registerPage: PropTypes.func.isRequired,
 };
 
 export default RegisterInput;

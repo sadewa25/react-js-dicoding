@@ -4,34 +4,33 @@
 import api from '../../utils/api';
 
 const ActionType = {
-  RECEIVE_THREADS: 'RECEIVE_THREADS',
-  ADD_THREADS: 'ADD_THREADS',
-  TOGGLE_LIKE_THREADS: 'TOGGLE_LIKE_THREADS',
+  RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
+  ADD_THREAD_DETAIL: 'ADD_THREAD_DETAIL',
 };
 
-function receiveThreadsActionCreator(threads) {
+function receiveThreadDetailActionCreator(detailThread) {
   return {
-    type: ActionType.RECEIVE_THREADS,
+    type: ActionType.RECEIVE_THREAD_DETAIL,
     payload: {
-      threads,
+      detailThread,
     },
   };
 }
 
-function addThreadsActionCreator(threads) {
+function addThreadDetailActionCreator(threads) {
   return {
-    type: ActionType.ADD_THREADS,
+    type: ActionType.ADD_THREAD_DETAIL,
     payload: {
-      threads,
+      detailThread,
     },
   };
 }
 
-function asyncGetThreads() {
+function asyncGetThreadDetail({id}) {
   return async (dispatch) => {
     try {
-      const Threads = await api.getAllThreads();
-      dispatch(receiveThreadsActionCreator(Threads));
+      const detailThread = await api.getThreadDetail({id});
+      dispatch(receiveThreadDetailActionCreator(detailThread));
     } catch (error) {
       alert(error.message);
     }
@@ -51,8 +50,6 @@ function asyncAddThreads({ title, body}) {
 
 export {
   ActionType,
-  receiveThreadsActionCreator,
-  asyncGetThreads,
-  addThreadsActionCreator,
-  asyncAddThreads
+  receiveThreadDetailActionCreator,
+  asyncGetThreadDetail
 };

@@ -11,7 +11,8 @@ function BtnAdd({ addAct, messages }) {
 }
 
 BtnAdd.propTypes = {
-  addTalk: PropTypes.func.isRequired,
+  addAct: PropTypes.func.isRequired,
+  messages: PropTypes.string.isRequired
 };
 
 export default BtnAdd;

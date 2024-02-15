@@ -16,6 +16,7 @@ Judul dari thread.
 Potongan dari body thread (opsional).
 Waktu pembuatan thread.
 Jumlah komentar.
+
 Informasi pembuat thread:
 Nama
 Avatar (opsional)
@@ -25,6 +26,7 @@ Halaman detail thread harus mengandung informasi berikut ini.
 Judul dari thread.
 Body dari thread.
 Waktu pembuatan thread.
+
 Informasi pembuat thread:
 Nama
 Avatar

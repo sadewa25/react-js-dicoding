@@ -100,6 +100,52 @@ const api = (() => {
 
     return threads;
   }
+  
+  async function createThread({ title, body }) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title,
+        body,
+      }),
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { thread } } = responseJson;
+
+    return thread;
+  }
+
+  async function getThreadDetail({ id }) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    const { data: { detailThread } } = responseJson;
+
+    return detailThread;
+  }
   /***Old Code */
 
   async function getAllUsers() {
@@ -118,83 +164,6 @@ const api = (() => {
     return users;
   }
 
-  async function getAllTalks() {
-    const response = await fetch(`${BASE_URL}/talks`);
-
-    const responseJson = await response.json();
-
-    const { status, message } = responseJson;
-
-    if (status !== 'success') {
-      throw new Error(message);
-    }
-
-    const { data: { talks } } = responseJson;
-
-    return talks;
-  }
-
-  async function getTalkDetail(id) {
-    const response = await fetch(`${BASE_URL}/talks/${id}`);
-
-    const responseJson = await response.json();
-
-    const { status, message } = responseJson;
-
-    if (status !== 'success') {
-      throw new Error(message);
-    }
-
-    const { data: { talkDetail } } = responseJson;
-
-    return talkDetail;
-  }
-
-  async function createTalk({ text, replyTo = '' }) {
-    const response = await _fetchWithAuth(`${BASE_URL}/talks`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        text,
-        replyTo,
-      }),
-    });
-
-    const responseJson = await response.json();
-
-    const { status, message } = responseJson;
-
-    if (status !== 'success') {
-      throw new Error(message);
-    }
-
-    const { data: { talk } } = responseJson;
-
-    return talk;
-  }
-
-  async function toggleLikeTalk(id) {
-    const response = await _fetchWithAuth(`${BASE_URL}/talks/likes`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        talkId: id,
-      }),
-    });
-
-    const responseJson = await response.json();
-
-    const { status, message } = responseJson;
-
-    if (status !== 'success') {
-      throw new Error(message);
-    }
-  }
-
   return {
     putAccessToken,
     getAccessToken,
@@ -202,12 +171,11 @@ const api = (() => {
     login,
     getOwnProfile,
     getAllThreads,
+    createThread,
+    getThreadDetail,
+
 
     getAllUsers,
-    getAllTalks,
-    createTalk,
-    toggleLikeTalk,
-    getTalkDetail,
   };
 })();
 

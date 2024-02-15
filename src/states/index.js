@@ -9,6 +9,7 @@ import usersReducer from './users/reducer';
 
 import { loadingBarReducer } from 'react-redux-loading-bar';
 import threadsReducer from './threads/reducer';
+import detailThreadReducer from './threadDetail/reducer';
 
 const store = configureStore({
   reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
     users: usersReducer,
     talkDetail: talkDetailReducer,
     loadingBar: loadingBarReducer,
-    threads: threadsReducer
+    threads: threadsReducer,
+    detailThread: detailThreadReducer
   },
 });
 

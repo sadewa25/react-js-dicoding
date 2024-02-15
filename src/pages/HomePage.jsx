@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { asyncGetThreads } from '../states/threads/action';
 import ThreadsList from '../components/ThreadsList';
 import { BtnAdd } from '../atoms';
+import { Link, useNavigate } from 'react-router-dom';
 
 function HomePage() {
   const {
     threads = [],
-    authUser,
   } = useSelector((states) => states);
+
+  const navigate = useNavigate()
 
   const dispatch = useDispatch();
 
@@ -17,7 +19,7 @@ function HomePage() {
   }, [dispatch]);
 
   const addThreads = () => {
-    alert('oit');
+    navigate('/form-thread')
   }
 
   return (
