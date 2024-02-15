@@ -146,6 +146,28 @@ const api = (() => {
 
     return detailThread;
   }
+
+  async function createThreadDetail({ id, content }) {
+    const response = await _fetchWithAuth(`${BASE_URL}/threads/${id}/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        content,
+      }),
+    });
+
+    const responseJson = await response.json();
+
+    const { status, message } = responseJson;
+
+    if (status !== 'success') {
+      throw new Error(message);
+    }
+
+    return status;
+  }
   /***Old Code */
 
   async function getAllUsers() {
@@ -173,6 +195,7 @@ const api = (() => {
     getAllThreads,
     createThread,
     getThreadDetail,
+    createThreadDetail,
 
 
     getAllUsers,

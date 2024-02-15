@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DetailInformationThread from '../components/DetailInformationThread';
 import { useSelector, useDispatch } from 'react-redux';
-import { asyncGetThreadDetail } from '../states/threadDetail/action';
+import { asyncAddThreadDetail, asyncGetThreadDetail } from '../states/threadDetail/action';
 
 function DetailThreadPage() {
     
@@ -20,9 +20,25 @@ function DetailThreadPage() {
         }))
       }, [dispatch]);
 
+    const onAddComment = ({comment}) => {
+
+        const content = comment.comment
+
+        dispatch(asyncAddThreadDetail({
+            id,
+            content
+        }));
+
+        dispatch(asyncGetThreadDetail({
+            id
+        }))
+
+        
+    }
+
     return (
         <section className="home-page">
-            <DetailInformationThread data={detailThread} />
+            <DetailInformationThread data={detailThread} addComment={onAddComment} />
         </section>
     )
 }

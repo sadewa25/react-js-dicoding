@@ -2,6 +2,7 @@
  * @TODO: Define all the actions (creator) for the Threadss state
  */
 import api from '../../utils/api';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 
 const ActionType = {
   RECEIVE_THREADS: 'RECEIVE_THREADS',
@@ -29,23 +30,27 @@ function addThreadsActionCreator(threads) {
 
 function asyncGetThreads() {
   return async (dispatch) => {
+    dispatch(showLoading())
     try {
       const Threads = await api.getAllThreads();
       dispatch(receiveThreadsActionCreator(Threads));
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading())
   };
 }
 
 function asyncAddThreads({ title, body}) {
   return async (dispatch) => {
+    dispatch(showLoading())
     try {
       const threads = await api.createThread({ title, body });
       dispatch(addThreadsActionCreator(threads));
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading())
   };
 }
 

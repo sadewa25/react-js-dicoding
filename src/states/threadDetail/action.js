@@ -2,6 +2,7 @@
  * @TODO: Define all the actions (creator) for the Threadss state
  */
 import api from '../../utils/api';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 
 const ActionType = {
   RECEIVE_THREAD_DETAIL: 'RECEIVE_THREAD_DETAIL',
@@ -17,39 +18,43 @@ function receiveThreadDetailActionCreator(detailThread) {
   };
 }
 
-function addThreadDetailActionCreator(threads) {
+function addThreadDetailActionCreator(status) {
   return {
     type: ActionType.ADD_THREAD_DETAIL,
-    payload: {
-      detailThread,
-    },
+    payload: []
   };
 }
 
 function asyncGetThreadDetail({id}) {
   return async (dispatch) => {
+    dispatch(showLoading())
     try {
       const detailThread = await api.getThreadDetail({id});
       dispatch(receiveThreadDetailActionCreator(detailThread));
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading())
   };
 }
 
-function asyncAddThreads({ title, body}) {
+function asyncAddThreadDetail({ id, content }) {
   return async (dispatch) => {
+    dispatch(showLoading())
     try {
-      const threads = await api.createThread({ title, body });
-      dispatch(addThreadsActionCreator(threads));
+      const threads = await api.createThreadDetail({ id, content });
+      dispatch(addThreadDetailActionCreator(threads));
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading())
   };
 }
 
 export {
   ActionType,
   receiveThreadDetailActionCreator,
-  asyncGetThreadDetail
+  asyncGetThreadDetail,
+  addThreadDetailActionCreator,
+  asyncAddThreadDetail
 };

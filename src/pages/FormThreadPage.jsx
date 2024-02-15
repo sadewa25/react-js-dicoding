@@ -1,8 +1,8 @@
 import React from 'react'
-import FormThreadInput from '../atoms/FormThreadInput'
 import { asyncAddThreads } from '../states/threads/action';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { FormThreadInput } from '../atoms';
 
 function FormThreadPage() {
 

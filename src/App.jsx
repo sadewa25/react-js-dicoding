@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import Loading from './components/Loading';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import Navigation from './components/Navigation';
 import RegisterPage from './pages/RegisterPage';
-import DetailPage from './pages/DetailPage';
 import { asyncPreloadProcess } from './states/isPreload/action';
 import { asyncUnsetAuthUser } from './states/authUser/action';
 import FormThreadPage from './pages/FormThreadPage';
 import DetailThreadPage from './pages/DetailThreadPage';
+import Loading from './atoms/LoadingBar';
 
 function App() {
   const {
@@ -58,7 +57,6 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/form-thread" element={<FormThreadPage />} />
             <Route path="/detail-thread/:id" element={<DetailThreadPage />} />
-            <Route path="/talks/:id" element={<DetailPage />} />
           </Routes>
         </main>
       </div>

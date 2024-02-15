@@ -8,7 +8,7 @@ function detailThreadReducer(detailThread = [], action = {}) {
     case ActionType.RECEIVE_THREAD_DETAIL:
       return action.payload.detailThread;
     case ActionType.ADD_THREAD_DETAIL:
-      return [action.payload.detailThread, ...detailThread];
+      return [];
     default:
       return detailThread;
   }

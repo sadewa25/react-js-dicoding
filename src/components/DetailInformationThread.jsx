@@ -1,9 +1,16 @@
 import React, { useEffect } from 'react'
 import ReactHtmlParser from 'html-react-parser';
 import { postedAt } from '../utils';
-import InformationThreadItem from '../atoms/InformationThreadItem';
+import { InformationThreadItem } from '../atoms';
+import CommentInput from '../atoms/CommentInput';
 
-function DetailInformationThread({ data }) {
+function DetailInformationThread({ data, addComment }) {
+
+  const onAddComment = (comment) => {
+    addComment({
+      comment
+    })
+  }
 
   return (
     <div>
@@ -25,7 +32,8 @@ function DetailInformationThread({ data }) {
       
       <div style={{ marginTop: 30 }}>
         <h3>Komentar</h3>
-        
+        <CommentInput addComment={onAddComment} />
+        <div style={{ marginTop: 30 }}></div>
         {
           data.comments && (
             data.comments.map((c, index) =>

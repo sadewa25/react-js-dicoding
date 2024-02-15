@@ -1,4 +1,5 @@
 import api from '../../utils/api';
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
 
 /**
  * @TODO: Define all the actions (creator) for the users state
@@ -17,12 +18,14 @@ function receiveUsersActionCreator(users) {
 }
 
 function asyncRegisterUser({ name, email, password }) {
-  return async () => {
+  return async (dispatch) => {
+    dispatch(showLoading())
     try {
       await api.register({ name, email, password });
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading())
   };
 }
 
